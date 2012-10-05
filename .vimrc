@@ -2,6 +2,10 @@
  set nocompatible               " be iMproved
  filetype off                   " required!
 
+au BufRead */UI_v2/* set ft=haml 
+au BufRead */UI_v2/js/* set ft=javascript 
+au BufRead */UI_v2/css/* set ft=css 
+
  set rtp+=~/.vim/bundle/vundle/
  call vundle#rc()
 
@@ -25,9 +29,12 @@
  Bundle 'Syntastic'
  Bundle 'ShowMarks'
  Bundle 'SuperTab'
+ Bundle 'pangloss/vim-javascript'
+ Bundle 'ack.vim'
+ Bundle 'NERD_Tree-and-ack'
+
  " non github repos
- "Bundle 'git://git.wincent.com/command-t.git' "TODO Compile vim with ruby support
- " ...
+ "Bundle 'git://git.wincent.com/command-t.git' "TODO Compile vim with ruby support " ...
 
  filetype plugin indent on     " required!
  "
@@ -78,6 +85,9 @@ set showmatch "Show matching bracets when text indicator is over them
 set mat=2 "How many tenths of a second to blink
 " visual bell
 set vb
+
+" better manage buffers
+set hidden
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => MiniBufExplorer 
@@ -131,3 +141,17 @@ set statusline+=%*
 " Fuzzy Finder
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <Leader>f :FufFile **/<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => MiniBufExplorer 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <Leader>b :MiniBufExplorer<cr>
+map <Leader>c :CMiniBufExplorer<cr>
+map <Leader>u :UMiniBufExplorer<cr>
+map <Leader>t :TMiniBufExplorer<cr>
+
+autocmd BufRead,BufNew :call UMiniBufExplorer
+let g:miniBufExplMapWindowNavVim = 1 
+let g:miniBufExplMapWindowNavArrows = 1 
+let g:miniBufExplMapCTabSwitchBufs = 1 
+let g:miniBufExplModSelTarget = 1
